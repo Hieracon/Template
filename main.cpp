@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -35,9 +36,10 @@ public:
 
 
 struct matrix{
-    int matr[10][10];
-    int no_elem;
-    int norm;
+    double **matr;
+    int rows;
+    int columns;
+    double norm;
 };
 
 int main()
@@ -112,20 +114,31 @@ int main()
 
                     if(option == 1){
                         arrOfmatr.push_back(matrix());
-                        cout << "The size of the matrix is:";
-                        cin >> arrOfmatr[it].no_elem;
+                        cout << "The number of rows is:";
+                        cin >> arrOfmatr[it].rows;
+                        cout << "The number of columns is:";
+                        cin >> arrOfmatr[it].columns;
 
-                        for(int i = 0; i < arrOfmatr[it].no_elem; ++i){
-                            for(int j = 0; j < arrOfmatr[it].no_elem; ++j){
+                        arrOfmatr[it].matr = new double* [arrOfmatr[it].rows];
+                        for(int i = 0; i < arrOfmatr[it].rows; ++i){
+                            arrOfmatr[it].matr[i] = new double[arrOfmatr[it].columns];
+                        }
+
+                        for(int i = 0; i < arrOfmatr[it].rows; ++i){
+                            for(int j = 0; j < arrOfmatr[it].columns; ++j){
                                 cout << "matrix[" << i << "][" << j << "]=";
                                 cin >> arrOfmatr[it].matr[i][j];
                             }
                         }
 
                         arrOfmatr[it].norm = 0;
-                        for(int i = 0; i < arrOfmatr[it].no_elem; ++i){
-                            arrOfmatr[it].norm += arrOfmatr[it].matr[i][i];
+                        for(int i = 0; i < arrOfmatr[it].rows; ++i){
+                            for(int j = 0; j < arrOfmatr[it].columns; ++j){
+                                arrOfmatr[it].norm += pow(arrOfmatr[it].matr[i][j],2);
+                            }
                         }
+
+                        arrOfmatr[it].norm = sqrt(arrOfmatr[it].norm);
 
                         obj3.add_element(arrOfmatr[it].norm);
 
