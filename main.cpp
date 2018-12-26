@@ -153,6 +153,7 @@ int main()
                         }
                     }
                 }while(option != 4);
+                arrOfmatr.clear();
             }
     }
     return 0;
