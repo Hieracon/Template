@@ -153,7 +153,9 @@ int main()
                         }
                     }
                 }while(option != 4);
-                arrOfmatr.clear();
+                for(int i = 0; i < it; ++i){
+                    delete[] arrOfmatr[i].matr;
+                }
             }
     }
     return 0;
