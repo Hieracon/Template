@@ -154,8 +154,12 @@ int main()
                     }
                 }while(option != 4);
                 for(int i = 0; i < it; ++i){
-                    delete[] arrOfmatr[i].matr;
+                    for (int j = 0; j < arrOfmatr[i].rows; ++j){
+                        delete [] arrOfmatr[i].matr[j];
+                    }
+                    delete [] arrOfmatr[i].matr;
                 }
+                arrOfmatr.clear();
             }
     }
     return 0;
